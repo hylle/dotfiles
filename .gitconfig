@@ -1,0 +1,54 @@
+[core]
+	excludesfile = ~/.gitignore_global
+	attributesfile = ~/.config/git/attributes
+[user]
+	name = Jakob Hyldtoft
+	email = jh@konform.com
+[alias]
+	unstage = reset -q HEAD --
+	discard = checkout --
+	nevermind = !git reset --hard HEAD && git clean -d -f
+	uncommit = reset --mixed HEAD~
+	save = commit -m
+	resave = commit --amend
+	invert = revert
+	last = log -1 HEAD --format=format:"%Cred%H"
+	summary = status -u -s
+	graph = log --graph --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
+	history = log -10 --format=format:'%Cgreen%h %Creset- %s (%cN, %ar)'
+	branchout = checkout -b
+	tags = tag
+	branches = branch -a
+	stashes = stash list
+	remotes = remote -v
+	prestage = diff -w --word-diff=color
+	precommit = diff --cached -w --word-diff=color --word-diff-regex='[^[:space:]<>]+'
+	move = mv
+	remove = rm
+	unmerged = branch --no-merged
+	unstash = stash pop
+	what = show -w
+	untrack = rm -r --cached
+	rewrite = rebase -i
+	amend = commit --amend
+	back = checkout "-"
+	contributors = shortlog -s -n --no-merges
+	filetrail = log --follow -p -w
+	mergetrail = log --ancestry-path --merges
+	unmerged = diff --name-only --diff-filter=U
+	smudge-all = "checkout HEAD -- **"
+[blame]
+	date = relative
+[push]
+	default = current
+
+# mac: gunexpand/gexpand, other: unexpand/expand
+[filter "tabspace"]
+	smudge = gunexpand --tabs=4 --first-only
+	clean = gexpand --tabs=4 --initial
+[filter "tabspace2"]
+	smudge = gunexpand --tabs=2 --first-only
+	clean = gexpand --tabs=2 --initial
+[filter "alwaystabs"]
+	smudge = gunexpand --tabs=4 --first-only
+	clean = gunexpand --tabs=4 --first-only

@@ -1,0 +1,7 @@
+*.php eol=lf filter=tabspace
+*.phtml eol=lf filter=alwaystabs
+*.js eol=lf filter=alwaystabs
+*.json eol=lf filter=alwaystabs
+*.css eol=lf filter=alwaystabs
+*.scss eol=lf filter=alwaystabs
+*.less eol=lf filter=alwaystabs
