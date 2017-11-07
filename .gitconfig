@@ -4,6 +4,36 @@
 [user]
 	name = Jakob Hyldtoft
 	email = jh@konform.com
+
+[pager]
+	# insanely beautiful diffs ==> npm install -g diff-so-fancy
+	diff = diff-so-fancy | less --tabs=2 -RFX
+	show = diff-so-fancy | less --tabs=2 -RFX
+
+# so much color
+[color]
+	ui = always
+[color "diff"]
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = "red bold 52"
+	newNormal = "green bold"
+	newHighlight = "green bold 22"
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
 [alias]
 	unstage = reset -q HEAD --
 	discard = checkout --
@@ -15,7 +45,7 @@
 	last = log -1 HEAD --format=format:"%Cred%H"
 	summary = status -u -s
 	graph = log --graph --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
-	history = log -10 --format=format:'%Cgreen%h %Creset- %s (%cN, %ar)'
+	history = log -15 --format=format:'%Cgreen%h %Creset- %s (%cN, %ar)'
 	branchout = checkout -b
 	tags = tag
 	branches = branch -a
@@ -36,11 +66,17 @@
 	filetrail = log --follow -p -w
 	mergetrail = log --ancestry-path --merges
 	unmerged = diff --name-only --diff-filter=U
+	merged = "!git branch --merged develop --no-color | grep -v '^*' | grep -v '^  develop$' | grep -v '^  master'"
+	merged-delete = "!git merged | xargs git branch -D"
+	merged-branch = "!f() { git branch --merged \"$1\" --no-color | grep -v '^*' | grep -v '^  \"$1\"$' | grep -v '^  develop$' | grep -v '^  master'; }; f"
+	merged-branch-delete = "!xargs git branch -D"
 	smudge-all = "checkout HEAD -- **"
 [blame]
 	date = relative
 [push]
 	default = current
+[diff]
+	compactionHeuristic = true
 
 # mac: gunexpand/gexpand, other: unexpand/expand
 [filter "tabspace"]
@@ -52,3 +88,5 @@
 [filter "alwaystabs"]
 	smudge = gunexpand --tabs=4 --first-only
 	clean = gunexpand --tabs=4 --first-only
+[commit]
+	template = ~/.stCommitMsg
