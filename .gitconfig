@@ -79,14 +79,14 @@
 	compactionHeuristic = true
 
 # mac: gunexpand/gexpand, other: unexpand/expand
-[filter "tabspace"]
-	smudge = gunexpand --tabs=4 --first-only
-	clean = gexpand --tabs=4 --initial
-[filter "tabspace2"]
-	smudge = gunexpand --tabs=2 --first-only
-	clean = gexpand --tabs=2 --initial
-[filter "alwaystabs"]
-	smudge = gunexpand --tabs=4 --first-only
-	clean = gunexpand --tabs=4 --first-only
+#[filter "tabspace"]
+#	smudge = gunexpand --tabs=4 --first-only
+#	clean = gexpand --tabs=4 --initial
+#[filter "tabspace2"]
+#	smudge = gunexpand --tabs=2 --first-only
+#	clean = gexpand --tabs=2 --initial
+#[filter "alwaystabs"]
+#	smudge = gunexpand --tabs=4 --first-only
+#	clean = gunexpand --tabs=4 --first-only
 [commit]
 	template = ~/.stCommitMsg
