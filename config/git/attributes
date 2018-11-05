@@ -1,7 +1,0 @@
-composer.lock -diff
-yarn.lock -diff
-package-lock.json -diff
-web/assets/*.js -diff
-web/assets/*.css -diff
-*.map -diff
-CHANGELOG.md merge=union
