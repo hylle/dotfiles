@@ -3,7 +3,7 @@
 	attributesfile = ~/.config/git/attributes
 [user]
 	name = Jakob Hyldtoft
-	email = jh@konform.com
+	email = jakob.hyldtoft@gmail.com
 
 [pager]
 	# insanely beautiful diffs ==> npm install -g diff-so-fancy
