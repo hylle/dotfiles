@@ -71,6 +71,7 @@
 	merged-branch = "!f() { git branch --merged \"$1\" --no-color | grep -v '^*' | grep -v '^  \"$1\"$' | grep -v '^  develop$' | grep -v '^  master'; }; f"
 	merged-branch-delete = "!xargs git branch -D"
 	smudge-all = "checkout HEAD -- **"
+	gh = "!open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' / )/compare/$(git branch --show-current)"
 [blame]
 	date = relative
 [push]
