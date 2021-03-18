@@ -1,14 +1,25 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	attributesfile = ~/.config/git/attributes
+	editor = nvim
+	ignorecase = false
+	pager = delta
 [user]
 	name = Jakob Hyldtoft
-	email = jakob.hyldtoft@gmail.com
+	email = jht@dixa.com
+# git config --global user.email johndoe@example.com
 
-[pager]
-	# insanely beautiful diffs ==> npm install -g diff-so-fancy
-	diff = diff-so-fancy | less --tabs=2 -RFX
-	show = diff-so-fancy | less --tabs=2 -RFX
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	features = side-by-side line-numbers decorations
+	whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
 
 # so much color
 [color]
@@ -35,6 +46,7 @@
 	untracked = cyan
 
 [alias]
+	pushf = push --force-with-lease
 	unstage = reset -q HEAD --
 	discard = checkout --
 	nevermind = !git reset --hard HEAD && git clean -d -f
@@ -44,7 +56,7 @@
 	invert = revert
 	last = log -1 HEAD --format=format:"%Cred%H"
 	summary = status -u -s
-	graph = log --graph --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
+	graph = log --graph --branches --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
 	history = log -15 --format=format:'%Cgreen%h %Creset- %s (%cN, %ar)'
 	branchout = checkout -b
 	tags = tag
@@ -72,22 +84,11 @@
 	merged-branch-delete = "!xargs git branch -D"
 	smudge-all = "checkout HEAD -- **"
 	gh = "!open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' / )/compare/$(git branch --show-current)"
+	cpb = "!git branch --show-current | tr -d '\n' | pbcopy"
+
 [blame]
 	date = relative
 [push]
 	default = current
 [diff]
 	compactionHeuristic = true
-
-# mac: gunexpand/gexpand, other: unexpand/expand
-#[filter "tabspace"]
-#	smudge = gunexpand --tabs=4 --first-only
-#	clean = gexpand --tabs=4 --initial
-#[filter "tabspace2"]
-#	smudge = gunexpand --tabs=2 --first-only
-#	clean = gexpand --tabs=2 --initial
-#[filter "alwaystabs"]
-#	smudge = gunexpand --tabs=4 --first-only
-#	clean = gunexpand --tabs=4 --first-only
-[commit]
-	template = ~/.stCommitMsg
